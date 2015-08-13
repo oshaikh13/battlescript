@@ -215,9 +215,15 @@ angular.module('battlescript.services', [])
 
 .factory('SocketHolder', function(){
   var playerOne = window.localStorage.getItem('username');
-  var socket = io('http://localhost:8000', {query: 'username=' + playerOne + '&handler=battle'});
+  var socket = io('http://localhost:8000', {query: 'username=' + playerOne});
+
+  var emitOnline = function(){
+    socket.emit('online');
+  }
+
   return {
     socket: socket,
-    playerOne: playerOne
+    playerOne: playerOne,
+    emitOnline: emitOnline
   }
 });
