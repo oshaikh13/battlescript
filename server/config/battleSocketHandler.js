@@ -63,3 +63,4 @@ module.exports = function(socket, io, roomModel){
     socket.broadcast.to(joinedRoom.id).emit('playerTwoReady');
   });
 }
+
