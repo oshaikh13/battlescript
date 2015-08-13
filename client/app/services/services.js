@@ -123,28 +123,6 @@ angular.module('battlescript.services', [])
 })
 
 ////////////////////////////////////////////////////////////
-// Sockets factory
-// 
-// A set of reusable functions to handle socket connections
-// inside various controllers
-////////////////////////////////////////////////////////////
-
-.factory('Sockets', function() {
-
-  // creates a new socket base on the passed in params. Params
-  // is an array of relationships, where each relationship is a
-  // key pair value in string format
-  var createSocket = function(params) {
-    var query = params.join('&');
-    return io('http://localhost:8000', {query: query});
-  };
-
-  return {
-    createSocket: createSocket
-  }
-})
-
-////////////////////////////////////////////////////////////
 // Notifications factory
 // 
 // A set of reusable functions to handle user notifications
@@ -221,5 +199,25 @@ angular.module('battlescript.services', [])
   return {
     getBattle: getBattle,
     attemptBattle: attemptBattle
+  }
+})
+
+
+////////////////////////////////////////////////////////////
+// Socket factory
+// 
+// Simply holds a socket connection
+// 
+// - get a current, active, socket.
+// - Has the current user name
+// - Emits online status
+////////////////////////////////////////////////////////////
+
+.factory('SocketHolder', function(){
+  var playerOne = window.localStorage.getItem('username');
+  var socket = io('http://localhost:8000', {query: 'username=' + playerOne + '&handler=battle'});
+  return {
+    socket: socket,
+    playerOne: playerOne
   }
 });

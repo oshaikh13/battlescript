@@ -1,6 +1,6 @@
 angular.module('battlescript.dashboard', [])
 
-.controller('DashboardController', function ($scope, $timeout, Sockets, Dashboard) {
+.controller('DashboardController', function ($scope, $timeout, SocketHolder, Dashboard) {
   // scope.username always refers to the curreng logged in user
   // 
   // TODO: extract this into the global set up, so we don't have to keep
@@ -37,7 +37,7 @@ angular.module('battlescript.dashboard', [])
 
   // TODO: extract these out into a Socket factory for simple reuse
 
-  var socket = Sockets.createSocket(['username=nick', 'handler=dashboard']);
+  var socket = SocketHolder.socket;
 
   $scope.$on('$routeChangeStart', $scope.logout);
 
