@@ -6,7 +6,6 @@ angular.module('battlescript.battle', [])
   // init players
   ////////////////////////////////////////////////////////////
 
-
   $scope.playerOne = SocketHolder.playerOne;
   $scope.playerTwo = "...";
 
