@@ -121,9 +121,7 @@ angular.module('battlescript', [
       $location.path('/');
     }
 
-    if (Auth.isAuth() && SocketHolder.playerOne) {
-      SocketHolder.emitOnline();
-    }
+    SocketHolder.emitOnline();
 
     // redirect to dashboard if user is auth and tries to access home page
     if (next && next.url === '/' && Auth.isAuth()) {
