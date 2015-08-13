@@ -5,7 +5,7 @@ angular.module('battlescript.dashboard', [])
   // 
   // TODO: extract this into the global set up, so we don't have to keep
   // rededfining it in every controller
-  $scope.username = window.localStorage.getItem('username');
+  $scope.username = SocketHolder.playerOne;
 
   ////////////////////////////////////////////////////////////
   // sets up all the dashboard stuff here
@@ -28,23 +28,7 @@ angular.module('battlescript.dashboard', [])
   // set up sockets
   ////////////////////////////////////////////////////////////
 
-  // TODO: extract these out into a Socket factory for simple reuse
-
   var socket = SocketHolder.socket;
-
-  $scope.$on('$routeChangeStart', $scope.logout);
-
-  // This does the same, for refresh. Now go to socket handler for more info
-  window.onbeforeunload = function(e) {
-    $scope.logout();
-  };
-  
-  // Logout on back button
-  window.addEventListener("hashchange", $scope.logout)
-
-  $scope.logout = function(){
-    socket.emit('userLoggedOut');
-  };
 
   ////////////////////////////////////////////////////////////
   // set up online users
@@ -56,6 +40,7 @@ angular.module('battlescript.dashboard', [])
     Dashboard.getOnlineUsers()
       .then(function(data) {
         $scope.onlineUsers = data;
+        console.log(data);
       });
   };
 

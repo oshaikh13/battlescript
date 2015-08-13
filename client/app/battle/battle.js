@@ -1,8 +1,6 @@
 angular.module('battlescript.battle', [])
 
 .controller('BattleController', function($scope, $timeout, Battle, SocketHolder) {
-
-  console.log('hello');
   
   ////////////////////////////////////////////////////////////
   // init players

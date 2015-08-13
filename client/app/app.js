@@ -59,11 +59,15 @@ angular.module('battlescript', [
   };
   return attach;
 })
-.run(function ($rootScope, $location, Auth) {
+.run(function ($rootScope, $location, Auth, SocketHolder) {
   $rootScope.$on('$stateChangeStart', function (evt, next, current) {
     // redirect home if auth required and user isn't auth
     if (next && next.authenticate && !Auth.isAuth()) {
       $location.path('/');
+    }
+
+    if (Auth.isAuth()) {
+      SocketHolder.emitOnline();
     }
 
     // redirect to dashboard if user is auth and tries to access home page

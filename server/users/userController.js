@@ -116,5 +116,7 @@ module.exports = {
   getUsers: function (req, res, next){
     console.log("SENDING CURRENT USERS ", currentUsers);
     res.send(currentUsers);
-  }
+  },
+
+  currentUsers: currentUsers
 };
