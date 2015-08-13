@@ -61,10 +61,12 @@ angular.module('battlescript.dashboard', [])
   // handle battle requests
   ////////////////////////////////////////////////////////////
 
+  socket.emit('dashListen');
+
   // Open up socket with specific dashboard server handler
   $scope.requestBattle = function($event, opponentUsername) {
     $event.preventDefault();
-
+    console.log(opponentUsername);
     // now, we need to emit to the socket
     socket.emit('outgoingBattleRequest', {
       fromUser: $scope.username,  // request from the logged in user

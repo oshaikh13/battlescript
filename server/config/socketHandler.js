@@ -1,6 +1,7 @@
 var roomModel = require('../room/roomModel.js');
 var userController = require('../users/userController.js');
 var battleSocketHandler = require('../config/battleSocketHandler.js');
+var dashboardSocketHandler = require('../config/dashboardSocketHandler.js')
 
 
 module.exports = function(socket, io){
@@ -36,6 +37,10 @@ module.exports = function(socket, io){
   socket.on('matchReady', function(){
     battleSocketHandler(socket, io, roomModel);
   });
+
+  socket.on('dashListen', function(){
+    dashboardSocketHandler(socket, io, userController.currentUsers);
+  })
 
 
 

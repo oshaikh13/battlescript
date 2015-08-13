@@ -121,7 +121,7 @@ angular.module('battlescript', [
       $location.path('/');
     }
 
-    if (Auth.isAuth()) {
+    if (Auth.isAuth() && SocketHolder.playerOne) {
       SocketHolder.emitOnline();
     }
 

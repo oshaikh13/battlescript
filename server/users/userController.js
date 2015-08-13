@@ -23,6 +23,8 @@ module.exports = {
 
                 //save the user to currentUsers array
                 currentUsers[user.username] = user;
+
+                
                 console.log("CURRENT USER LIST :", currentUsers);
 
               } else {
@@ -114,6 +116,12 @@ module.exports = {
   },
 
   getUsers: function (req, res, next){
+    for (var key in currentUsers) {
+      if (key === "null") {
+        delete currentUsers[key];
+      }
+    }
+
     console.log("SENDING CURRENT USERS ", currentUsers);
     res.send(currentUsers);
   },

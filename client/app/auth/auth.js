@@ -3,7 +3,7 @@
 // in our signup/signin forms using the injected Auth service
 angular.module('battlescript.auth', [])
 
-.controller('AuthController', function ($scope, $window, $location, Auth) {
+.controller('AuthController', function ($scope, $window, $location, Auth, SocketHolder) {
   $scope.user = {};
 
   $scope.signin = function () {
